@@ -44,7 +44,7 @@ video {
   height: 50%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(-90deg);
   /* since the progress circle is on top of the button, we need to turn off pointer events in order to be able to click on the button */
   pointer-events: none;
 }

@@ -1,4 +1,10 @@
 const app = () => {
+  // time vars
+  let currentTime;
+  let elapsedTime;
+  let seconds;
+  let minutes;
+
   const song = document.querySelector(".song-loop");
   const playBtn = document.querySelector(".play");
 
@@ -54,6 +60,7 @@ const app = () => {
 
   // stop and play sounds
   const avHandler = (song, video) => {
+    elapsedTime = 0;
     if (song.paused) {
       song.play();
       playBtn.src = "./svg/pause.svg";
@@ -68,11 +75,11 @@ const app = () => {
   //   animate the circle fill and check the time
   song.ontimeupdate = () => {
     //   this updates periodically while the 'song' plays
-    let currentTime = song.currentTime;
-    let elapsedTime = defaultDuration - currentTime;
+    currentTime = song.currentTime;
+    elapsedTime = defaultDuration - currentTime;
 
-    let seconds = Math.floor(elapsedTime % 60);
-    let minutes = Math.floor(elapsedTime / 60);
+    seconds = Math.floor(elapsedTime % 60);
+    minutes = Math.floor(elapsedTime / 60);
 
     // animate the circle
     let progress =
