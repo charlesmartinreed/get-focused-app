@@ -38,6 +38,24 @@ const app = () => {
       playBtn.src = "/svg/play.svg";
     }
   };
+
+  //   animate the circle fill and check the time
+  song.ontimeupdate = () => {
+    //   this updates periodically while the 'song' plays
+    let currentTime = song.currentTime;
+    let elapsedTime = defaultDuration - currentTime;
+
+    let seconds = Math.floor(elapsedTime % 60);
+    let minutes = Math.floor(elapsedTime / 60);
+
+    // animate the circle
+    let progress =
+      outlineLength - (currentTime / defaultDuration) * outlineLength;
+    outline.style.strokeDashoffset = progress;
+
+    // animate the clock
+    timeDisplay.textContent = `${minutes}:${seconds}`;
+  };
 };
 
 app();

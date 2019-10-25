@@ -36,6 +36,7 @@ video {
 
 .player-container {
   position: relative;
+  cursor: pointer;
 }
 
 .player-container svg {
@@ -46,6 +47,10 @@ video {
   transform: translate(-50%, -50%);
   /* since the progress circle is on top of the button, we need to turn off pointer events in order to be able to click on the button */
   pointer-events: none;
+}
+
+.player-container img {
+  /* transition: all 0.5s ease-in; */
 }
 
 .time-display {
