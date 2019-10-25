@@ -34,13 +34,26 @@ const app = () => {
     });
   });
 
+  //   EVENT - switch between sounds
+  soundBtns.forEach(btn => {
+    btn.addEventListener("click", function() {
+      let songSelection = this.getAttribute("data-sound");
+      let videoSelection = this.getAttribute("data-video");
+
+      song.src = songSelection;
+      video.src = videoSelection;
+
+      avHandler(song, video);
+    });
+  });
+
   //   playing sounds
   playBtn.addEventListener("click", () => {
-    songHandler(song);
+    avHandler(song, video);
   });
 
   // stop and play sounds
-  const songHandler = song => {
+  const avHandler = (song, video) => {
     if (song.paused) {
       song.play();
       playBtn.src = "./svg/pause.svg";
