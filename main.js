@@ -14,12 +14,25 @@ const app = () => {
   //   time display
   const timeDisplay = document.querySelector(".time-display");
 
+  //   time buttons
+  const timeBtns = document.querySelectorAll(".time-select button");
+
   //   focus session duration
   let defaultDuration = 600;
 
   //   get stroke dash array and offset, animate them from 0 to full
   outline.style.strokeDasharray = outlineLength;
   outline.style.strokeDashoffset = outlineLength; // renders the dash nonvisible
+
+  // EVENT - changing the time
+  timeBtns.forEach(btn => {
+    btn.addEventListener("click", function() {
+      defaultDuration = this.getAttribute("data-time");
+      timeDisplay.textContent = `${Math.floor(
+        defaultDuration / 60
+      )}:${Math.floor(defaultDuration % 60)}`;
+    });
+  });
 
   //   playing sounds
   playBtn.addEventListener("click", () => {
@@ -55,6 +68,13 @@ const app = () => {
 
     // animate the clock
     timeDisplay.textContent = `${minutes}:${seconds}`;
+
+    if (currentTime >= defaultDuration) {
+      song.pause();
+      song.currentTime = 0;
+      playBtn.src = "./svg/play.svg";
+      video.pause();
+    }
   };
 };
 
